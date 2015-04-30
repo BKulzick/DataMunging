@@ -41,15 +41,18 @@ public class application {
 		StringTokenizer st;
 
 		ArrayList checkThisRow = new ArrayList<Object>();
-		int spots = 0;
+		ArrayList minimumChangeDay = new ArrayList<Object>();
+		int spotsInArray = 0;
 
-		while (spots < 9) {
+		while (spotsInArray < 9) {
 			checkThisRow.add(0);
-			spots++;
+			minimumChangeDay.add(0);
+			spotsInArray++;
 		}
-
+		minimumChangeDay.set(6, 9999);
+		minimumChangeDay.set(7, 0);
 		System.out.println(checkThisRow.size());
-		int[] minimumChangeDay = { 0, 100, 0 };
+		
 
 		do {
 			nextLine = bReader.readLine();
@@ -64,17 +67,17 @@ public class application {
 				for (int i = 2; i < 9; i++) {
 					checkThisRow.set(i, Integer.parseInt(st.nextToken()));
 				}
-				System.out.println(checkThisRow);
-				// if ((checkThisDay[1] - checkThisDay[2]) <
-				// (minimumChangeDay[1] - minimumChangeDay[2])) {
-				// for (int i = 0; i < minimumChangeDay.length; i++) {
-				// minimumChangeDay[i] = checkThisDay[i];
-				// }
+				//System.out.println(checkThisRow);
+				if (((Math.abs((int)checkThisRow.get(7)) - (int)checkThisRow.get(6))) < Math.abs(((int)minimumChangeDay.get(7) - (int)minimumChangeDay.get(6)))) {
+				for (int i = 0; i < minimumChangeDay.size(); i++) {
+				 minimumChangeDay.set(i, checkThisRow.get(i));
+				 }
 
 			}
-
+			}
 		} while (bReader.ready());
 
-		System.out.println(checkThisRow);
+		System.out.println(minimumChangeDay);
 	}
 }
+
